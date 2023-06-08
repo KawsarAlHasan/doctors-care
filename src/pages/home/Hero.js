@@ -1,5 +1,5 @@
 import React from "react";
-import treatment from "../assets/images/treatment.png";
+import treatment from "../../assets/images/treatment.png";
 
 function Hero() {
   return (

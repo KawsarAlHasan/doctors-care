@@ -1,7 +1,7 @@
 import React from "react";
-import doctor from "../assets/images/doctor.png";
-import appointment from "../assets/images/appointment.png";
-import PrimaryButtons from "./PrimaryButtons";
+import doctor from "../../assets/images/doctor.png";
+import appointment from "../../assets/images/appointment.png";
+import PrimaryButtons from "../../components/PrimaryButtons";
 
 function MakeAppointment() {
   return (

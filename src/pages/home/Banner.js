@@ -1,6 +1,6 @@
 import React from "react";
-import chair from "../assets/images/chair.png";
-import PrimaryButtons from "./PrimaryButtons";
+import chair from "../../assets/images/chair.png";
+import PrimaryButtons from "../../components/PrimaryButtons";
 
 function Banner() {
   return (

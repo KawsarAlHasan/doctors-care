@@ -1,10 +1,10 @@
 import React from "react";
-import Banner from "../../components/Banner";
-import InfoCards from "../../components/InfoCards";
-import Services from "../../components/Services";
-import Hero from "../../components/Hero";
-import MakeAppointment from "../../components/MakeAppointment";
-import Testimonial from "../../components/Testimonial";
+import Banner from "./Banner";
+import InfoCards from "./InfoCards";
+import Services from "./Services";
+import Hero from "./Hero";
+import MakeAppointment from "./MakeAppointment";
+import Testimonial from "./Testimonial";
 
 function Home() {
   return (
