@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-function AppointmentOption({ appointmentOption }) {
+function AppointmentOption({ appointmentOption, setTreatment }) {
   const { name, slots } = appointmentOption;
-  const [treatment, setTreatment] = useState(null);
   return (
     <div className="card shadow-xl">
       <div className="card-body text-center">
@@ -13,38 +12,14 @@ function AppointmentOption({ appointmentOption }) {
           available{" "}
         </p>
         <div className="card-actions justify-center">
-          {/* modal start */}
           <label
-            onClick={() => setTreatment(appointmentOption)}
-            for="book-appointment"
+            disabled={slots.length === 0}
+            for="my-modal-6"
             className="btn modal-button btn-sm md:btn-md lg:btn-wide btn-primary"
+            onClick={() => setTreatment(appointmentOption)}
           >
             Book Appointment
           </label>
-
-          {treatment && (
-            <>
-              <input
-                type="checkbox"
-                id="book-appointment"
-                class="modal-toggle"
-              />
-              <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box relative">
-                  <label
-                    for="book-appointment"
-                    class="btn btn-sm btn-circle absolute right-2 top-2"
-                  >
-                    ✕
-                  </label>
-                  <h3 className="font-bold text-lg text-center">
-                    {treatment.name}
-                  </h3>
-                </div>
-              </div>
-            </>
-          )}
-          {/* modal end */}
         </div>
       </div>
     </div>
