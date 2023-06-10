@@ -4,6 +4,27 @@ import React from "react";
 function BookingModal({ treatment, setTreatment, selectedDate }) {
   const { name: treatmentName, slots } = treatment;
   const date = format(selectedDate, "PP");
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const slot = form.slot.value;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+
+    const booking = {
+      appointmentDate: date,
+      treatment: treatmentName,
+      patient: name,
+      slot,
+      email,
+      phone,
+    };
+    console.log(booking);
+    setTreatment(null);
+  };
+
   return (
     <div>
       <input type="checkbox" id="my-modal-6" class="modal-toggle" />
@@ -16,7 +37,10 @@ function BookingModal({ treatment, setTreatment, selectedDate }) {
             ✕
           </label>
           <h3 className="font-bold text-lg text-center">{treatmentName}</h3>
-          <form className="grid grid-cols-1 gap-3 mt-10">
+          <form
+            onSubmit={handleBooking}
+            className="grid grid-cols-1 gap-3 mt-10"
+          >
             <input
               type="text"
               disabled
@@ -30,8 +54,18 @@ function BookingModal({ treatment, setTreatment, selectedDate }) {
                 </option>
               ))}
             </select>
-            {/* <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" /> */}
+            <input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              className="input w-full input-bordered"
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email Address"
+              className="input w-full input-bordered"
+            />
             <input
               name="phone"
               type="text"

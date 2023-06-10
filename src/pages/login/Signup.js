@@ -1,25 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contex/AuthProvider";
 
-function Login() {
+function Signup() {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { createUser } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7">
-        <h2 className="text-xl text-center">Login</h2>
+        <h2 className="text-xl text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              {...register("name", { required: "Name is required" })}
+              className="input input-bordered w-full max-w-xs"
+            />
+            {errors.name && (
+              <p className="text-red-600">{errors.name?.message}</p>
+            )}
+          </div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
-              type="text"
+              type="email"
               {...register("email", { required: "Email is required" })}
               className="input input-bordered w-full max-w-xs"
             />
@@ -46,20 +68,17 @@ function Login() {
             {errors.password && (
               <p className="text-red-600">{errors.password?.message}</p>
             )}
-            <label className="label">
-              <span className="label-text">Forget Password?</span>
-            </label>
           </div>
           <input
-            className="btn btn-secondary w-full"
+            className="btn btn-secondary w-full mt-3"
             type="submit"
-            value="LOGIN"
+            value="SIGNUP"
           />
         </form>
-        <p>
-          New to Doctors Portal
-          <Link to="/signup" className="text-primary">
-            Create new Account
+        <p className="mt-4">
+          Already have an account?
+          <Link to="/login" className="text-primary">
+            Please Login
           </Link>
         </p>
         <div className="divider">OR</div>
@@ -69,4 +88,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
