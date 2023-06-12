@@ -25,7 +25,7 @@ function BookingModal({ treatment, setTreatment, selectedDate, refetch }) {
       phone,
     };
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://backend-theta-five.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
