@@ -7,6 +7,7 @@ import Signup from "../pages/login/Signup";
 import PrivateRoute from "../contex/PrivateRoute";
 import DashboardLayout from "../layout/DashboardLayout";
 import MyAppointment from "../pages/dashboard/MyAppointment";
+import AllUsers from "../pages/dashboard/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <MyAppointment />,
+      },
+      {
+        path: "/dashboard/allusers",
+        element: <AllUsers />,
       },
     ],
   },
