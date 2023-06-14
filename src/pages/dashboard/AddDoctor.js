@@ -47,7 +47,6 @@ function AddDoctor() {
             specialty: data.specialty,
             image: imgData.secure_url,
           };
-          console.log("image", doctor);
 
           // save doctor
           fetch("http://localhost:5000/doctors", {
