@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 function MyAppointment() {
   const { user } = useContext(AuthContext);
 
-  const url = `https://backend-theta-five.vercel.app/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -35,15 +35,16 @@ function MyAppointment() {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, i) => (
-              <tr key={booking._id}>
-                <th>{i + 1}</th>
-                <td>{booking.patient}</td>
-                <td>{booking.treatment}</td>
-                <td>{booking.appointmentDate}</td>
-                <td>{booking.slot}</td>
-              </tr>
-            ))}
+            {bookings &&
+              bookings?.map((booking, i) => (
+                <tr key={booking._id}>
+                  <th>{i + 1}</th>
+                  <td>{booking.patient}</td>
+                  <td>{booking.treatment}</td>
+                  <td>{booking.appointmentDate}</td>
+                  <td>{booking.slot}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

@@ -25,7 +25,7 @@ function BookingModal({ treatment, setTreatment, selectedDate, refetch }) {
       phone,
     };
 
-    fetch("https://backend-theta-five.vercel.app/bookings", {
+    fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -47,12 +47,12 @@ function BookingModal({ treatment, setTreatment, selectedDate, refetch }) {
 
   return (
     <div>
-      <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box relative">
+      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box relative">
           <label
             for="my-modal-6"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
