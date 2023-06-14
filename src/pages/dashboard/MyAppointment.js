@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contex/AuthProvider";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 function MyAppointment() {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://doctors-care.onrender.com/bookings?email=${user?.email}`;
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -32,6 +33,7 @@ function MyAppointment() {
               <th>Treatment</th>
               <th>Date</th>
               <th>Time</th>
+              <th>Payment</th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +45,16 @@ function MyAppointment() {
                   <td>{booking.treatment}</td>
                   <td>{booking.appointmentDate}</td>
                   <td>{booking.slot}</td>
+                  <td>
+                    {booking.price && !booking.paid && (
+                      <Link to={`/dashboard/payment/${booking._id}`}>
+                        <button className="btn btn-primary btn-sm">Pay</button>
+                      </Link>
+                    )}
+                    {booking.price && booking.paid && (
+                      <span className="text-green-500">Paid</span>
+                    )}
+                  </td>
                 </tr>
               ))}
           </tbody>

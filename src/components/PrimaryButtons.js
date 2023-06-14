@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PrimaryButtons({ children }) {
   return (
-    <button className="btn uppercase text-white btn-primary bg-gradient-to-r from-primary to-secondary">
+    <Link
+      to="/appointment"
+      className="btn uppercase text-white btn-primary bg-gradient-to-r from-primary to-secondary"
+    >
       {children}
-    </button>
+    </Link>
   );
 }
 

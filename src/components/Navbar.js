@@ -18,7 +18,7 @@ function Navbar() {
         <Link to="/appointment">Appointment</Link>
       </li>
       <li>
-        <Link to="/about">About</Link>
+        <Link to="/doctors">Doctors</Link>
       </li>
 
       {user?.uid ? (

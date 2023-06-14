@@ -16,7 +16,9 @@ function AddDoctor() {
   const { data: specialties, isLoading } = useQuery({
     queryKey: ["specialty"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/appointmentSpecialty");
+      const res = await fetch(
+        "https://doctors-care.onrender.com/appointmentSpecialty"
+      );
       const data = await res.json();
       return data;
     },
@@ -45,11 +47,12 @@ function AddDoctor() {
             name: data.name,
             email: data.email,
             specialty: data.specialty,
+            description: data.description,
             image: imgData.secure_url,
           };
 
           // save doctor
-          fetch("http://localhost:5000/doctors", {
+          fetch("https://doctors-care.onrender.com/doctors", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -111,6 +114,21 @@ function AddDoctor() {
               </option>
             ))}
           </select>
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <input
+            type="description"
+            {...register("description", {
+              required: "description is required",
+            })}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {errors.description && (
+            <p className="text-red-600">{errors.description?.message}</p>
+          )}
         </div>
 
         <div className="form-control w-full max-w-xs">

@@ -11,11 +11,15 @@ import AllUsers from "../pages/dashboard/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AddDoctor from "../pages/dashboard/AddDoctor";
 import ManageDoctors from "../pages/dashboard/ManageDoctors";
+import Payment from "../pages/dashboard/Payment";
+import DisplayError from "../components/DisplayError";
+import Doctors from "../pages/Doctors/Doctors";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError />,
     children: [
       {
         path: "/",
@@ -28,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/doctors",
+        element: <Doctors />,
       },
       {
         path: "/appointment",
@@ -46,6 +54,7 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <DisplayError />,
     children: [
       {
         path: "/dashboard",
@@ -74,6 +83,16 @@ const router = createBrowserRouter([
             <ManageDoctors></ManageDoctors>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <AdminRoute>
+            <Payment />
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://doctors-care.onrender.com/bookings/${params.id}`),
       },
     ],
   },
